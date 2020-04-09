@@ -25,7 +25,7 @@ class QbException(Exception):
 
     def __init__(self, error=None):
         if error:
-            self.detail = error
+            self.detail = f"{self.__class__.__name__}: {error}"
 
 
 class ValidationError(Exception):

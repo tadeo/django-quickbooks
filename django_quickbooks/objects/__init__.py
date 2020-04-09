@@ -15,7 +15,7 @@ def import_object_cls(resource_name):
     try:
         return import_string('%s.%s' % (__package__, resource_name))
     except ImportError:
-        raise QBObjectNotImplemented
+        raise QBObjectNotImplemented(f"Object {resource_name} is not found")
 
 
 from django_quickbooks.objects.customer import \
