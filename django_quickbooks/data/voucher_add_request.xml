@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<!-- ========================================================================== -->
+<!-- >VoucherAddRq.xml                                                         -->
+<!--                                                                            -->
+<!-- INTUIT CONFIDENTIAL.                                                       -->
+<!-- Copyright (c) 2001-2009 Intuit Inc. All rights reserved.                   -->
+<!-- Use is subject to the terms specified at:                                  -->
+<!--          http://developer.intuit.com/legal/devsite_tos.html                -->
+<!--                                                                            -->
+<!--                                                                            -->
+<!-- ========================================================================== -->
+<!-- Summary: Sample illustrating the account query request.                    -->
+<!-- This XML file contains a single request to query accounts.                 -->
+<!--                                                                            -->
+<!-- Description:                                                               -->
+<!-- A sample qbposXML request for use with SDKTest samples so that you can see -->
+<!-- the response from QB POS and verify that the QB POS Request Processor is   -->
+<!-- behaving appropriately.   -->
+<!-- ========================================================================== -->
+<!-- Language: xml                                                            -->
+<!-- Structure: qbposXML                                                            -->
+<!-- QuickBooks: any                                                            -->
+<!-- Deployment: any                                                            -->
+<!-- ========================================================================== -->
+<?qbposxml version="1.0"?>
+<QBPOSXML>
+  <QBPOSXMLMsgsRq onError="stopOnError">
+     <ItemInventoryAddRq requestID="1">
+      <ItemInventoryAdd defMacro="ListID:Inv1">
+        <Attribute>Attrib</Attribute>    <!-- opt, field max = 8 -->
+	<Cost>5.00</Cost>                   <!-- opt -->
+        <DepartmentListID>1000000001</DepartmentListID>
+        <Desc1>SDK Item Voucher Add</Desc1>
+        <Desc2>Desc2</Desc2>               <!-- opt, field max = 30 -->
+        <Size>Size</Size>                  <!-- opt, field max = 8 -->
+      </ItemInventoryAdd>
+    </ItemInventoryAddRq>
+    <VoucherAddRq requestID = "37">
+      <VoucherAdd>
+        <Associate>Associate</Associate>            <!-- opt,field max= 40-->
+        <Comments>Comments</Comments>               <!-- opt,field max= 300-->
+        <DiscountPercent>10</DiscountPercent>       <!-- opt -->
+        <Fee>5.00</Fee>                             <!-- opt -->
+        <!-- VoucherType may have one of the following values: 
+	     Receiving,Return -->
+        <Freight>5.00</Freight>                     <!-- opt -->
+        <InvoiceDate>2005-04-13</InvoiceDate>       <!-- opt -->
+        <!-- QuickBooksFlag may have one of the following values: 
+	     NotPosted,Completed,Error,UnbilledPurchases -->
+        <QuickBooksFlag>Completed</QuickBooksFlag>  <!-- opt -->
+        <TxnDate>2005-04-13</TxnDate>               <!-- opt -->
+        <VendorListID>1000000002</VendorListID> 
+        <VoucherType>Receiving</VoucherType>        <!-- opt -->
+        <!-- HistoryDocStatus may have one of the following values: 
+	     Regular,Reversed,Reversing -->
+        <VoucherItemAdd>                            <!-- opt, may rep -->
+          <ListID useMacro="ListID:Inv1" />
+          <QtyReceived>2</QtyReceived>              <!-- opt -->    
+        </VoucherItemAdd>
+      </VoucherAdd>
+    </VoucherAddRq>
+  </QBPOSXMLMsgsRq>
+</QBPOSXML>

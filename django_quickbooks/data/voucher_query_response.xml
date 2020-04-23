@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<QBPOSXML>
+    <QBPOSXMLMsgsRs>
+        <VoucherQueryRs iteratorID="{97302431-0303-4CB6-B55D-4BC446BC7D16}" iteratorRemainingCount="0" retCount="1"
+                        statusCode="0" statusMessage="Status OK" statusSeverity="Info">
+            <VoucherRet>
+                <TxnID>5067872877475168513</TxnID>
+                <TimeModified>2020-04-23T17:52:12+02:00</TimeModified>
+                <CompanyName>JaneVendor</CompanyName>
+                <Discount>0.00</Discount>
+                <DiscountPercent>0.00</DiscountPercent>
+                <Fee>0.00</Fee>
+                <Freight>0.00</Freight>
+                <HistoryDocStatus>Regular</HistoryDocStatus>
+                <ItemsCount>2</ItemsCount>
+                <PayeeListID>5016802461168337153</PayeeListID>
+                <PayeeName>JaneVendor</PayeeName>
+                <QuickBooksFlag>NotPosted</QuickBooksFlag>
+                <StoreExchangeStatus>Modified</StoreExchangeStatus>
+                <StoreNumber>1</StoreNumber>
+                <Subtotal>450.00</Subtotal>
+                <Total>450.00</Total>
+                <TotalQty>6.00</TotalQty>
+                <TxnDate>2020-04-23</TxnDate>
+                <VendorListID>5016802461168337153</VendorListID>
+                <VoucherNumber>1</VoucherNumber>
+                <VoucherType>Receiving</VoucherType>
+                <Workstation>1</Workstation>
+                <VoucherItemRet>
+                    <ListID>5016804879251702017</ListID>
+                    <Cost>50.00</Cost>
+                    <Desc1>Hawaii Shirt</Desc1>
+                    <ExtendedCost>150.00</ExtendedCost>
+                    <ItemNumber>2</ItemNumber>
+                    <QtyReceived>3.00</QtyReceived>
+                </VoucherItemRet>
+                <VoucherItemRet>
+                    <ListID>5015710967808295169</ListID>
+                    <Cost>100.00</Cost>
+                    <Desc1>Jeans</Desc1>
+                    <ExtendedCost>300.00</ExtendedCost>
+                    <ItemNumber>1</ItemNumber>
+                    <QtyReceived>3.00</QtyReceived>
+                </VoucherItemRet>
+            </VoucherRet>
+        </VoucherQueryRs>
+    </QBPOSXMLMsgsRs>
+</QBPOSXML>

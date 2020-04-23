@@ -42,3 +42,7 @@ from django_quickbooks.objects.department_pos import \
 from django_quickbooks.objects.purchase_order_pos import \
     PurchaseOrder, \
     PurchaseOrderItem
+
+from django_quickbooks.objects.voucher_pos import \
+    Voucher, \
+    VoucherItem
