@@ -38,3 +38,7 @@ from django_quickbooks.objects.item_inventory_pos import \
 
 from django_quickbooks.objects.department_pos import \
     Department
+
+from django_quickbooks.objects.purchase_order_pos import \
+    PurchaseOrder, \
+    PurchaseOrderItem
