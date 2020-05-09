@@ -21,17 +21,6 @@ class QuickBooksService(ServiceBase):
         """
         print('authenticate()')
         return_array = []
-        from django_quickbooks.models import QBDTask
-        from datetime import datetime
-        # QBDTask.objects.create(qb_operation='Add', qb_resource='ItemInventory',
-        #                        created_at=datetime.now(), realm_id='944c952c-661e-4e2b-91f4-bf7563c41302',
-        #                        content_type_id=33, object_id=1020596, data='cash')
-        # QBDTask.objects.create(qb_operation='Query', qb_resource='Department',
-        #                        created_at=datetime.now(), realm_id='944c952c-661e-4e2b-91f4-bf7563c41302',
-        #                        content_type_id=33, object_id=1057175)
-        # QBDTask.objects.create(qb_operation='Add', qb_resource='Voucher',
-        #                        created_at=datetime.now(), realm_id='944c952c-661e-4e2b-91f4-bf7563c41302',
-        #                        content_type_id=66, object_id=23)
         realm = session_manager.authenticate(username=strUserName, password=strPassword)
         if realm and realm.is_active:
             if not session_manager.in_session(realm):
@@ -39,9 +28,7 @@ class QuickBooksService(ServiceBase):
                 if session_manager.new_jobs(realm):
                     ticket = session_manager.set_ticket(realm)
                     return_array.append(ticket)
-                    # return_array.append(QBWC_CODES.CC)
-                    # return_array.append('Computer Name=desktop-ibhc7p1;Company Data=hassaantest1;Version=18')
-                    return_array.append('Computer Name=desktop-ibhc7p1;Company Data=hassaantest2;Version=18')
+                    return_array.append(QBWC_CODES.CC)
                     # TODO: need to think about appropriate management of delays
                     # returnArray.append(str(settings.QBWC_UPDATE_PAUSE_SECONDS))
                     # returnArray.append(str(settings.QBWC_MINIMUM_UPDATE_SECONDS))
@@ -189,12 +176,11 @@ class QuickBooksService(ServiceBase):
     def sendRequestXML(ctx, ticket, strHCPResponse, strCompanyFileName, qbXMLCountry, qbXMLMajorVers, qbXMLMinorVers):
         print('sendRequestXML() has been called')
         print('ticket:', ticket)
-        # print('strHCPResponse', strHCPResponse)
+        print('strHCPResponse', strHCPResponse)
         print('strCompanyFileName', strCompanyFileName)
         print('qbXMLCountry', qbXMLCountry)
-        x = session_manager.get_request(ticket)
-        print(x)
-        return x
+
+        return session_manager.get_request(ticket)
 
     @rpc(Unicode, Unicode, _returns=Unicode)
     def interactiveUrl(ctx, ticket, sessionID):
