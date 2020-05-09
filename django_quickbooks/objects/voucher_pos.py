@@ -6,20 +6,22 @@ class VoucherItem(BaseObject):
     fields = dict(
         ListID=dict(required=True, validator=dict(type=SchemeValidator.IDTYPE)),
         QtyReceived=dict(validator=dict(type=SchemeValidator.FLOATTYPE)),
+        Cost=dict(validator=dict(type=SchemeValidator.FLOATTYPE)),
     )
 
 
 class Voucher(BaseObject):
     fields = dict(
+        ListID=dict(validator=dict(type=SchemeValidator.IDTYPE)),
         Associate=dict(validator=dict(type=SchemeValidator.STRTYPE, max_length=40)),
         Comments=dict(validator=dict(type=SchemeValidator.STRTYPE, max_length=300)),
         TxnID=dict(validator=dict(type=SchemeValidator.IDTYPE)),
-        # CompanyName=dict(validator=dict(type=SchemeValidator.STRTYPE)),  # response only
+        CompanyName=dict(validator=dict(type=SchemeValidator.STRTYPE)),  # response only
         Discount=dict(validator=dict(type=SchemeValidator.FLOATTYPE)),
         DiscountPercent=dict(validator=dict(type=SchemeValidator.FLOATTYPE)),
         Fee=dict(validator=dict(type=SchemeValidator.FLOATTYPE)),
         Freight=dict(validator=dict(type=SchemeValidator.FLOATTYPE)),
-        # ItemsCount=dict(validator=dict(type=SchemeValidator.INTTYPE)),  # response only
+        ItemsCount=dict(validator=dict(type=SchemeValidator.INTTYPE)),  # response only
         # QuickBooksFlag may have one of the following values: NotPosted,Completed,Error,UnbilledPurchases
         QuickBooksFlag=dict(validator=dict(type=SchemeValidator.STRTYPE)),
         # StoreExchangeStatus may have one of the following values: Modified

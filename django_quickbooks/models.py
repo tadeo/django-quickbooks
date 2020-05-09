@@ -63,6 +63,7 @@ class QBDTaskMixin(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True)
     content_object = GenericForeignKey()
     created_at = models.DateTimeField(auto_now_add=True)
+    data = models.TextField(null=True, blank=True)
 
     class Meta:
         abstract = True
@@ -85,13 +86,13 @@ class QBDTaskMixin(models.Model):
         elif not obj:
             raise ObjectDoesNotExist
         elif self.qb_operation == QUICKBOOKS_ENUMS.OPP_MOD:
-            return service.update(obj.to_qbd_obj())
+            return service.update(obj.to_qbd_obj(**{'data': self.data}))
         elif self.qb_operation == QUICKBOOKS_ENUMS.OPP_ADD:
-            return service.add(obj.to_qbd_obj())
+            return service.add(obj.to_qbd_obj(**{'data': self.data}))
         elif self.qb_operation == QUICKBOOKS_ENUMS.OPP_DEL:
-            return service.delete(obj.to_qbd_obj())
+            return service.delete(obj.to_qbd_obj(**{'data': self.data}))
         elif self.qb_operation == QUICKBOOKS_ENUMS.OPP_VOID:
-            return service.void(obj.to_qbd_obj())
+            return service.void(obj.to_qbd_obj(**{'data': self.data}))
         else:
             raise QBOperationNotFound
 

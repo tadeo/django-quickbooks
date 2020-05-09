@@ -24,6 +24,8 @@ DEFAULTS = {
         'django_quickbooks.processors.InvoiceAddResponseProcessor',
         'django_quickbooks.processors.InvoiceModResponseProcessor',
         'django_quickbooks.processors.ItemServiceQueryResponseProcessor',
+        'django_quickbooks.processors.ItemInventoryQueryResponseProcessor',
+        'django_quickbooks.processors.ItemInventoryAddResponseProcessor',
     ),
 
     'RABBITMQ_DEFAULT_HOST': 'localhost',
@@ -42,6 +44,8 @@ DEFAULTS = {
     'LOCAL_MODEL_CLASSES': {
         'Invoice': '',
         'Customer': 'Inventory.models.Customer',
+        'ItemInventory': 'Inventory.models.Level7',
+
     }
 }
 

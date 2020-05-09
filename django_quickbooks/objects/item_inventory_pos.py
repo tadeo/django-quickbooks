@@ -4,6 +4,7 @@ from django_quickbooks.validators import SchemeValidator
 
 class ItemInventory(BaseObject):
     fields = dict(
+        ListID=dict(validator=dict(type=SchemeValidator.IDTYPE)),
         ALU=dict(validator=dict(type=SchemeValidator.STRTYPE, max_length=20)),
         Cost=dict(validator=dict(type=SchemeValidator.FLOATTYPE)),
         DepartmentListID=dict(required=True, validator=dict(type=SchemeValidator.IDTYPE)),

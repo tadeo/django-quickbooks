@@ -11,6 +11,7 @@ class PurchaseOrderItem(BaseObject):
 
 class PurchaseOrder(BaseObject):
     fields = dict(
+        ListID=dict(validator=dict(type=SchemeValidator.IDTYPE)),
         Associate=dict(validator=dict(type=SchemeValidator.STRTYPE, max_length=40)),
         CancelDate=dict(validator=dict(type=SchemeValidator.STRTYPE)),
         TxnID=dict(validator=dict(type=SchemeValidator.IDTYPE)),

@@ -13,3 +13,7 @@ from django_quickbooks.processors.invoice import \
 
 from django_quickbooks.processors.item_service import \
     ItemServiceQueryResponseProcessor
+
+from django_quickbooks.processors.pos.item_inventory import \
+    ItemInventoryQueryResponseProcessor, \
+    ItemInventoryAddResponseProcessor
