@@ -13,8 +13,13 @@ customer_created = Signal(providing_args=["qbd_model_mixin_obj", "realm_id"])
 customer_updated = Signal(providing_args=["qbd_model_mixin_obj", "realm_id"])
 invoice_created = Signal(providing_args=["qbd_model_mixin_obj", "realm_id"])
 invoice_updated = Signal(providing_args=["qbd_model_mixin_obj", "realm_id"])
+item_inventory_created = Signal(providing_args=["qbd_model_mixin_obj", "realm_id"])
+item_inventory_updated = Signal(providing_args=["qbd_model_mixin_obj", "realm_id"])
+qb_object_created = Signal(providing_args=["instance"])
+qb_object_updated = Signal(providing_args=["instance"])
 qbd_first_time_connected = Signal(providing_args=["realm_id"])
 
 from django_quickbooks.signals.customer import *
 from django_quickbooks.signals.invoice import *
 from django_quickbooks.signals.qbd_task import *
+from django_quickbooks.signals.pos.item_inventory import *

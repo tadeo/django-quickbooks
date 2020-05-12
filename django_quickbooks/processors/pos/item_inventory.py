@@ -1,6 +1,8 @@
 from django_quickbooks import QUICKBOOKS_ENUMS, qbwc_settings
 from django_quickbooks.objects.item_inventory_pos import ItemInventory
 from django_quickbooks.processors.base import ResponseProcessor, ResponseProcessorMixin
+from django_quickbooks.signals import qb_object_created
+from django.utils import timezone
 
 LocalItemInventory = qbwc_settings.LOCAL_MODEL_CLASSES['ItemInventory']
 
@@ -12,7 +14,7 @@ class ItemInventoryQueryResponseProcessor(ResponseProcessor, ResponseProcessorMi
     obj_class = ItemInventory
 
     def process(self, realm):
-        #fixme should handle duplicate response in someway
+        # fixme should handle duplicate response in someway
         cont = super().process(realm)
         if not cont:
             return False
@@ -38,7 +40,7 @@ class ItemInventoryAddResponseProcessor(ResponseProcessor, ResponseProcessorMixi
     obj_class = ItemInventory
 
     def process(self, realm):
-        # fixme should handle duplicate response in someway
+        # fixme should handle duplicate error response in someway
         cont = super().process(realm)
         if not cont:
             return False
@@ -49,11 +51,11 @@ class ItemInventoryAddResponseProcessor(ResponseProcessor, ResponseProcessorMixi
 
                 if local_item:
                     local_item.qbd_object_id = item.ListID
+                    local_item.qbd_object_updated_at = timezone.now()
                     local_item.save()
-
                     # self.update(local_item, item)
+                    qb_object_created.send(local_item.__class__.__name__, instance=local_item)
         return True
-
 
 # class ItemInventoryModResponseProcessor(ResponseProcessor, ResponseProcessorMixin):
 #     resource = QUICKBOOKS_ENUMS.RESOURCE_ITEM_INVENTORY_POS
