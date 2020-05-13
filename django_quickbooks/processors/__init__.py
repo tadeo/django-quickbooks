@@ -17,3 +17,7 @@ from django_quickbooks.processors.item_service import \
 from django_quickbooks.processors.pos.item_inventory import \
     ItemInventoryQueryResponseProcessor, \
     ItemInventoryAddResponseProcessor
+
+from django_quickbooks.processors.pos.voucher import \
+    VoucherQueryResponseProcessor, \
+    VoucherAddResponseProcessor
