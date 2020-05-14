@@ -106,11 +106,21 @@ class QBDTaskMixin(models.Model):
 
 
 class Realm(RealmMixin):
-    schema_name = models.CharField(max_length=100, unique=True)
     is_active = models.BooleanField(default=True)
+    qbpos_computer_name = models.CharField(max_length=100, blank=True, null=True)
+    qbpos_company_data = models.CharField(max_length=100, blank=True, null=True)
+    qbpos_version = models.CharField(max_length=100, blank=True, null=True, default='18')
 
     class Meta:
         abstract = False
+
+    def __str__(self):
+        return f"Realm {self.name}"
+
+    @property
+    def qbpos_connection_string(self):
+        return f"Computer Name={self.qbpos_computer_name};" \
+               f"Company Data={self.qbpos_company_data};Version={self.qbpos_version}"
 
 
 class RealmSession(RealmSessionMixin):
@@ -183,7 +193,7 @@ def create_qwc(realm, **kwargs):
     msg = etree.SubElement(root, 'FileID')
     msg.text = str(file_id)
 
-    qb_type = kwargs.pop('qb_type', qbwc_settings.QB_TYPE)
+    qb_type = kwargs.pop('qb_type', 'QBFS')
     msg = etree.SubElement(root, 'QBType')
     msg.text = str(qb_type)
 
