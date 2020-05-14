@@ -54,7 +54,7 @@ class ItemInventoryAddResponseProcessor(ResponseProcessor, ResponseProcessorMixi
                     local_item.qbd_object_updated_at = timezone.now()
                     local_item.save()
                     # self.update(local_item, item)
-                    qb_object_created.send(local_item.__class__.__name__, instance=local_item)
+                    qb_object_created.send(local_item.__class__, instance=local_item)
         return True
 
 # class ItemInventoryModResponseProcessor(ResponseProcessor, ResponseProcessorMixin):
