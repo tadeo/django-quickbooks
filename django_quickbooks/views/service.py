@@ -28,7 +28,10 @@ class QuickBooksService(ServiceBase):
                 if session_manager.new_jobs(realm):
                     ticket = session_manager.set_ticket(realm)
                     return_array.append(ticket)
-                    return_array.append(QBWC_CODES.CC)
+                    if realm.qb_type == 'QBPOS' and realm.qbpos_computer_name and realm.qbpos_company_data:
+                        return_array.append(realm.qbpos_connection_string)
+                    else:
+                        return_array.append(QBWC_CODES.CC)
                     # TODO: need to think about appropriate management of delays
                     # returnArray.append(str(settings.QBWC_UPDATE_PAUSE_SECONDS))
                     # returnArray.append(str(settings.QBWC_MINIMUM_UPDATE_SECONDS))
