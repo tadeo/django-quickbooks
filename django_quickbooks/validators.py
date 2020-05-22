@@ -29,10 +29,7 @@ def operation_type(value):
 
 
 def is_list(value):
-    if not isinstance(value, list):
-        raise ValidationError(VALIDATION_MESSAGES[ValidationCode.INVALID_TYPE] % (type(value), str),
-                              ValidationCode.INVALID_TYPE)
-    return True
+    return isinstance(value, list)
 
 
 def str_type_validator(value):
