@@ -17,6 +17,7 @@ item_inventory_created = Signal(providing_args=["qbd_model_mixin_obj", "realm_id
 item_inventory_updated = Signal(providing_args=["qbd_model_mixin_obj", "realm_id"])
 qb_object_created = Signal(providing_args=["instance"])
 qb_object_updated = Signal(providing_args=["instance"])
+qb_object_queried = Signal(providing_args=["instance", "realm_id"])
 qbd_first_time_connected = Signal(providing_args=["realm_id"])
 
 from django_quickbooks.signals.customer import *
