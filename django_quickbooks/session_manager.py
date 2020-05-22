@@ -39,8 +39,9 @@ class SessionManager(BaseSessionManager, RabbitMQManager):
             except QbException as exc:
                 logger = logging.getLogger('django.request')
                 logger.error(exc.detail)
-            except ObjectDoesNotExist:
-                pass
+            except ObjectDoesNotExist as exc:
+                logger = logging.getLogger('django.request')
+                logger.error(exc)
 
         queryset.delete()
 
