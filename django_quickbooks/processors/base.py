@@ -70,7 +70,11 @@ class ResponseProcessorMixin:
             local_obj.name = obj.Name
             local_obj.qbd_object_id = obj.ListID
             local_obj.qbd_object_updated_at = timezone.now() + timezone.timedelta(minutes=1)
-            local_obj.qbd_object_version = obj.EditSequence
+            try:
+                # QBPOS objects don't have EditSequence
+                local_obj.qbd_object_version = obj.EditSequence
+            except:
+                pass
             local_obj.save()
 
     def find_by_list_id(self, list_id):
