@@ -1,0 +1,47 @@
+<?xml version="1.0" ?>
+<!-- ========================================================================== -->
+<!-- VendorAddRq.xml                                                         -->
+<!--                                                                            -->
+<!-- INTUIT CONFIDENTIAL.                                                       -->
+<!-- Copyright (c) 2001-2009 Intuit Inc. All rights reserved.                   -->
+<!-- Use is subject to the terms specified at:                                  -->
+<!--          http://developer.intuit.com/legal/devsite_tos.html                -->
+<!--                                                                            -->
+<!--                                                                            -->
+<!-- ========================================================================== -->
+<!-- Summary: Sample illustrating the account query request.                    -->
+<!-- This XML file contains a single request to query accounts.                 -->
+<!--                                                                            -->
+<!-- Description:                                                               -->
+<!-- A sample qbposXML request for use with SDKTest samples so that you can see -->
+<!-- the response from QB POS and verify that the QB POS Request Processor is   -->
+<!-- behaving appropriately.   -->
+<!-- ========================================================================== -->
+<!-- Language: xml                                                            -->
+<!-- Structure: qbposXML                                                            -->
+<!-- QuickBooks: any                                                            -->
+<!-- Deployment: any                                                            -->
+<!-- ========================================================================== -->
+<?qbposxml version="1.0"?>
+<QBPOSXML>
+  <QBPOSXMLMsgsRq onError="stopOnError">
+    <VendorAddRq requestID = "46">
+      <VendorAdd>
+        <City>City</City>                        <!-- opt, field max = 31 -->
+        <CompanyName>Intuit</CompanyName>        <!-- opt, field max = 40 -->
+        <EMail>EMail</EMail>                     <!-- opt, field max = 99 -->
+        <FirstName>Iqbal</FirstName>             <!-- opt, field max = 30 -->
+        <IsInactive>false</IsInactive>           <!-- opt -->
+        <LastName>Yusuff</LastName>              <!-- opt, field max = 30 -->
+        <Notes>Notes</Notes>                     <!-- opt, field max = 245 -->
+        <Phone>Phone</Phone>                     <!-- opt, field max = 21 -->
+        <Phone2>Phone2</Phone2>                  <!-- opt, field max = 21 -->
+        <PostalCode>PostalCode</PostalCode>      <!-- opt, field max = 13 -->
+        <Salutation>Mr.</Salutation>             <!-- opt, field max = 15 -->
+        <State>State</State>                     <!-- opt, field max = 21 -->
+        <Street>Addr1</Street>                   <!-- opt, field max = 41 -->
+        <VendorCode>IQ</VendorCode>              <!-- field max = 3 -->
+      </VendorAdd>
+    </VendorAddRq>
+  </QBPOSXMLMsgsRq>
+</QBPOSXML>

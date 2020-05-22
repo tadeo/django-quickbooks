@@ -13,7 +13,7 @@ DEFAULTS = {
     'REALM_MODEL_CLASS': 'django_quickbooks.models.Realm',
     'REALM_SESSION_MODEL_CLASS': 'django_quickbooks.models.RealmSession',
     'QBD_TASK_MODEL_CLASS': 'django_quickbooks.models.QBDTask',
-    
+
     'REALM_CONNECTION_DECORATOR': 'django_quickbooks.decorators.base_realm_tenant_connection',
 
     'RESPONSE_PROCESSORS': (
@@ -28,6 +28,8 @@ DEFAULTS = {
         'django_quickbooks.processors.ItemInventoryAddResponseProcessor',
         'django_quickbooks.processors.VoucherQueryResponseProcessor',
         'django_quickbooks.processors.VoucherAddResponseProcessor',
+        'django_quickbooks.processors.VendorPOSQueryResponseProcessor',
+        'django_quickbooks.processors.VendorPOSAddResponseProcessor',
     ),
 
     'RABBITMQ_DEFAULT_HOST': 'localhost',
@@ -47,7 +49,8 @@ DEFAULTS = {
         'Invoice': '',
         'Customer': 'Inventory.models.Customer',
         'ItemInventory': 'Inventory.models.Level7',
-        'Voucher':'Inventory.models.OrderVoucher'
+        'Voucher': 'Inventory.models.OrderVoucher',
+        'VendorPOS': 'Inventory.models.QBVendor',
     }
 }
 

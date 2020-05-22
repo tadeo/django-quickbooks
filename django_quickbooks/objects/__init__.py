@@ -46,3 +46,6 @@ from django_quickbooks.objects.purchase_order_pos import \
 from django_quickbooks.objects.voucher_pos import \
     Voucher, \
     VoucherItem
+
+from django_quickbooks.objects.vendor_pos import \
+    Vendor

@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<!-- ========================================================================== -->
+<!-- VendorQueryRq.xml                                                         -->
+<!--                                                                            -->
+<!-- INTUIT CONFIDENTIAL.                                                       -->
+<!-- Copyright (c) 2001-2009 Intuit Inc. All rights reserved.                   -->
+<!-- Use is subject to the terms specified at:                                  -->
+<!--          http://developer.intuit.com/legal/devsite_tos.html                -->
+<!--                                                                            -->
+<!--                                                                            -->
+<!-- ========================================================================== -->
+<!-- Summary: Sample illustrating the account query request.                    -->
+<!-- This XML file contains a single request to query accounts.                 -->
+<!--                                                                            -->
+<!-- Description:                                                               -->
+<!-- A sample qbposXML request for use with SDKTest samples so that you can see -->
+<!-- the response from QB POS and verify that the QB POS Request Processor is   -->
+<!-- behaving appropriately.   -->
+<!-- ========================================================================== -->
+<!-- Language: xml                                                            -->
+<!-- Structure: qbposXML                                                            -->
+<!-- QuickBooks: any                                                            -->
+<!-- Deployment: any                                                            -->
+<!-- ========================================================================== -->
+<?qbposxml version="1.0"?>
+<QBPOSXML>
+  <QBPOSXMLMsgsRq onError="stopOnError">
+    <VendorQueryRq requestID = "52">
+      <LastNameFilter>
+        <!-- MatchStringCriterion may have one of the following values: 
+	     Equal, StartsWith, Contains, EndsWith -->
+        <MatchStringCriterion>Contains</MatchStringCriterion>
+        <LastName>Yusuff</LastName>       <!-- field max = 30 -->
+      </LastNameFilter>
+    </VendorQueryRq>
+  </QBPOSXMLMsgsRq>
+</QBPOSXML>

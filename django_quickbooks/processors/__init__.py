@@ -21,3 +21,7 @@ from django_quickbooks.processors.pos.item_inventory import \
 from django_quickbooks.processors.pos.voucher import \
     VoucherQueryResponseProcessor, \
     VoucherAddResponseProcessor
+
+from django_quickbooks.processors.pos.vendor import \
+    VendorPOSQueryResponseProcessor, \
+    VendorPOSAddResponseProcessor
