@@ -54,5 +54,5 @@ class VoucherAddResponseProcessor(ResponseProcessor, ResponseProcessorMixin):
                     local_voucher.qbd_object_updated_at = timezone.now()
                     local_voucher.save()
                     # self.update(local_voucher, voucher)
-                    qb_object_created.send(local_voucher.__class__.__name__, instance=local_voucher)
+                    qb_object_created.send(local_voucher.__class__, instance=local_voucher)
         return True
