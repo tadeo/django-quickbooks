@@ -1,9 +1,10 @@
 from django.contrib import admin
 
-from django_quickbooks import get_realm_model, get_realm_session_model
+from django_quickbooks import get_realm_model, get_realm_session_model, get_qbd_task_model
 
 Realm = get_realm_model()
 RealmSession = get_realm_session_model()
+Task = get_qbd_task_model()
 
 
 class RealmAdmin(admin.ModelAdmin):
@@ -16,3 +17,4 @@ class RealmAdmin(admin.ModelAdmin):
 
 admin.site.register(Realm, RealmAdmin)
 admin.site.register(RealmSession)
+admin.site.register(Task)
