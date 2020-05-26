@@ -63,7 +63,7 @@ class QBDTaskMixin(models.Model):
     object_id = models.CharField(max_length=50, null=True)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True)
     content_object = GenericForeignKey()
-    created_at = models.DateTimeField(default=now())
+    created_at = models.DateTimeField(default=now)
     data = models.TextField(null=True, blank=True)
 
     class Meta:

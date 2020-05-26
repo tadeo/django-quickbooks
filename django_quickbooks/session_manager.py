@@ -34,14 +34,14 @@ class SessionManager(BaseSessionManager, RabbitMQManager):
     def add_new_jobs(self, realm=None):
         queryset = QBDTask.objects.filter(realm=realm).order_by('created_at')
         for qb_task in queryset:
-            try:
+            # try:
                 self.publish_message(qb_task.get_request(), str(realm.id))
-            except QbException as exc:
-                logger = logging.getLogger('django.request')
-                logger.error(exc.detail)
-            except ObjectDoesNotExist as exc:
-                logger = logging.getLogger('django.request')
-                logger.error(exc)
+            # except QbException as exc:
+            #     logger = logging.getLogger('django.request')
+            #     logger.error(exc.detail)
+            # except ObjectDoesNotExist as exc:
+            #     logger = logging.getLogger('django.request')
+            #     logger.error(exc)
 
         queryset.delete()
 
