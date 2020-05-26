@@ -6,6 +6,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
+from django.utils.timezone import now
 from lxml import etree
 
 from django_quickbooks import qbwc_settings, QUICKBOOKS_ENUMS
@@ -62,7 +63,7 @@ class QBDTaskMixin(models.Model):
     object_id = models.CharField(max_length=50, null=True)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True)
     content_object = GenericForeignKey()
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(default=now())
     data = models.TextField(null=True, blank=True)
 
     class Meta:
