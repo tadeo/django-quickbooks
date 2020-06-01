@@ -21,12 +21,12 @@ class Customer(BaseObject):
         BillAddress=dict(validator=dict(type=SchemeValidator.OBJTYPE)),
         ShipAddress=dict(validator=dict(type=SchemeValidator.OBJTYPE)),
 
-        AccountBalance=dict(validator=dict(type=SchemeValidator.FLOATTYPE)),
-        AccountLimit=dict(validator=dict(type=SchemeValidator.FLOATTYPE)),
+        AccountBalance=dict(validator=dict(type=SchemeValidator.FLOATTYPE)),  # read-only
+        AccountLimit=dict(validator=dict(type=SchemeValidator.FLOATTYPE)),  # read-only
         IsAcceptingChecks=dict(validator=dict(type=SchemeValidator.BOOLTYPE)),
         CustomerDiscPercent=dict(validator=dict(type=SchemeValidator.FLOATTYPE)),
         IsUsingWithQB=dict(validator=dict(type=SchemeValidator.BOOLTYPE)),
-        StoreExchangeStatus=dict(validator=dict(type=SchemeValidator.STRTYPE)),
+        StoreExchangeStatus=dict(validator=dict(type=SchemeValidator.STRTYPE)),  # read-only
     )
 
     def __init__(self, Name=None, IsActive=None, **kwargs):
