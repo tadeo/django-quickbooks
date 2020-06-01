@@ -49,3 +49,6 @@ from django_quickbooks.objects.voucher_pos import \
 
 from django_quickbooks.objects.vendor_pos import \
     Vendor
+
+from django_quickbooks.objects.address_pos import \
+    Address as AddressPOS

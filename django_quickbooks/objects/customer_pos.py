@@ -6,6 +6,7 @@ class Customer(BaseObject):
     fields = dict(
         ListID=dict(validator=dict(type=SchemeValidator.IDTYPE)),
         CompanyName=dict(validator=dict(type=SchemeValidator.STRTYPE)),
+
         # CustomerDiscType may have one of the following values: None,PriceLevel,Percentage
         CustomerDiscType=dict(validator=dict(type=SchemeValidator.STRTYPE)),
         EMail=dict(validator=dict(type=SchemeValidator.STRTYPE)),
@@ -19,6 +20,13 @@ class Customer(BaseObject):
         Salutation=dict(validator=dict(type=SchemeValidator.STRTYPE)),
         BillAddress=dict(validator=dict(type=SchemeValidator.OBJTYPE)),
         ShipAddress=dict(validator=dict(type=SchemeValidator.OBJTYPE)),
+
+        AccountBalance=dict(validator=dict(type=SchemeValidator.FLOATTYPE)),
+        AccountLimit=dict(validator=dict(type=SchemeValidator.FLOATTYPE)),
+        IsAcceptingChecks=dict(validator=dict(type=SchemeValidator.BOOLTYPE)),
+        CustomerDiscPercent=dict(validator=dict(type=SchemeValidator.FLOATTYPE)),
+        IsUsingWithQB=dict(validator=dict(type=SchemeValidator.BOOLTYPE)),
+        StoreExchangeStatus=dict(validator=dict(type=SchemeValidator.STRTYPE)),
     )
 
     def __init__(self, Name=None, IsActive=None, **kwargs):
