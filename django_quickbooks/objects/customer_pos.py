@@ -4,6 +4,7 @@ from django_quickbooks.validators import SchemeValidator
 
 class Customer(BaseObject):
     fields = dict(
+        ListID=dict(validator=dict(type=SchemeValidator.IDTYPE)),
         CompanyName=dict(validator=dict(type=SchemeValidator.STRTYPE)),
         # CustomerDiscType may have one of the following values: None,PriceLevel,Percentage
         CustomerDiscType=dict(validator=dict(type=SchemeValidator.STRTYPE)),
