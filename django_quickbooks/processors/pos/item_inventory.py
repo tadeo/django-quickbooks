@@ -46,8 +46,8 @@ class ItemInventoryAddResponseProcessor(ResponseProcessor, ResponseProcessorMixi
             return False
         for item_ret in list(self._response_body):
             item = self.obj_class.from_lxml(item_ret)
-            if item.UPC:
-                local_item = self.find_by_name(item.UPC, field_name='id')
+            if item.ALU:
+                local_item = self.find_by_name(item.ALU, field_name='id')
 
                 if local_item:
                     local_item.qbd_object_id = item.ListID
