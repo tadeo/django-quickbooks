@@ -43,6 +43,7 @@ class ResponseProcessor:
         self._response_body = response_body_root
         self.status_code = response_body_root.attrib['statusCode']
         self.status_message = response_body_root.attrib.get('statusMessage', '')
+        self.status_severity = response_body_root.attrib.get('statusSeverity', '')
 
     def is_valid(self) -> bool:
         return '%s%sRs' % (self.resource, self.op_type) == self._actual_response_type
