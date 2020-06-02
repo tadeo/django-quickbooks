@@ -44,6 +44,8 @@ class ResponseProcessor:
         self.status_code = response_body_root.attrib['statusCode']
         self.status_message = response_body_root.attrib.get('statusMessage', '')
         self.status_severity = response_body_root.attrib.get('statusSeverity', '')
+        if self.status_severity == "Error":
+            raise QBXMLStatusError(f"{self.status_message}")
 
     def is_valid(self) -> bool:
         return '%s%sRs' % (self.resource, self.op_type) == self._actual_response_type
