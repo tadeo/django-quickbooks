@@ -25,3 +25,8 @@ from django_quickbooks.processors.pos.voucher import \
 from django_quickbooks.processors.pos.vendor import \
     VendorPOSQueryResponseProcessor, \
     VendorPOSAddResponseProcessor
+
+from django_quickbooks.processors.pos.customer import \
+    CustomerQueryResponseProcessor, \
+    CustomerAddResponseProcessor, \
+    CustomerModResponseProcessor
