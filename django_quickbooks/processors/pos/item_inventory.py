@@ -54,27 +54,5 @@ class ItemInventoryAddResponseProcessor(ResponseProcessor, ResponseProcessorMixi
                     local_item.qbd_object_updated_at = timezone.now()
                     local_item.save()
                     # self.update(local_item, item)
-                    qb_object_created.send(local_item.__class__, instance=local_item, realm=realm)
+                    qb_object_created.send(self.obj_class, instance=local_item, realm=realm)
         return True
-
-# class ItemInventoryModResponseProcessor(ResponseProcessor, ResponseProcessorMixin):
-#     resource = QUICKBOOKS_ENUMS.RESOURCE_ITEM_INVENTORY_POS
-#     op_type = QUICKBOOKS_ENUMS.OPP_MOD
-#     local_model_class = LocalItemInventory
-#     obj_class = ItemInventory
-#
-#     def process(self, realm):
-#         cont = super().process(realm)
-#         if not cont:
-#             return False
-#         for item_ret in list(self._response_body):
-#             item = self.obj_class.from_lxml(item_ret)
-#             local_item = None
-#             if item.ListID:
-#                 local_item = self.find_by_list_id(item.ListID)
-#             elif not local_item and item.Name:
-#                 local_item = self.find_by_name(item.Name)
-#
-#             if local_item:
-#                 self.update(local_item, item)
-#         return True
