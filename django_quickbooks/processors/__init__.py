@@ -23,8 +23,8 @@ from django_quickbooks.processors.pos.voucher import \
     VoucherAddResponseProcessor
 
 from django_quickbooks.processors.pos.vendor import \
-    VendorPOSQueryResponseProcessor, \
-    VendorPOSAddResponseProcessor
+    VendorQueryResponseProcessor, \
+    VendorAddResponseProcessor
 
 from django_quickbooks.processors.pos.customer import \
     CustomerQueryResponseProcessor, \

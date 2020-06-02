@@ -6,7 +6,7 @@ from django_quickbooks.signals import qb_object_created, qb_object_queried
 LocalVendor = qbwc_settings.LOCAL_MODEL_CLASSES['VendorPOS']
 
 
-class VendorPOSQueryResponseProcessor(ResponseProcessor, ResponseProcessorMixin):
+class VendorQueryResponseProcessor(ResponseProcessor, ResponseProcessorMixin):
     resource = QUICKBOOKS_ENUMS.RESOURCE_VENDOR_POS
     op_type = QUICKBOOKS_ENUMS.OPP_QR
     local_model_class = LocalVendor
@@ -36,7 +36,7 @@ class VendorPOSQueryResponseProcessor(ResponseProcessor, ResponseProcessorMixin)
         return True
 
 
-class VendorPOSAddResponseProcessor(ResponseProcessor, ResponseProcessorMixin):
+class VendorAddResponseProcessor(ResponseProcessor, ResponseProcessorMixin):
     resource = QUICKBOOKS_ENUMS.RESOURCE_VENDOR_POS
     op_type = QUICKBOOKS_ENUMS.OPP_ADD
     local_model_class = LocalVendor
