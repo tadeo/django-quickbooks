@@ -29,16 +29,7 @@ class Customer(BaseObject):
         StoreExchangeStatus=dict(validator=dict(type=SchemeValidator.STRTYPE)),  # read-only
     )
 
-    def __init__(self, Name=None, IsActive=None, **kwargs):
-        if Name:
-            self.Name = Name
-
-        if IsActive:
-            self.IsActive = IsActive
-
-        super().__init__(**kwargs)
-
     @staticmethod
     def get_service():
-        from django_quickbooks.services.customer import CustomerService
-        return CustomerService
+        from django_quickbooks.services.customer_pos import CustomerPOSService
+        return CustomerPOSService
