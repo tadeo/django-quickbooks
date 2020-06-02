@@ -16,21 +16,28 @@ DEFAULTS = {
 
     'REALM_CONNECTION_DECORATOR': 'django_quickbooks.decorators.base_realm_tenant_connection',
 
-    'RESPONSE_PROCESSORS': (
-        'django_quickbooks.processors.CustomerQueryResponseProcessor',
-        'django_quickbooks.processors.CustomerModResponseProcessor',
-        'django_quickbooks.processors.CustomerAddResponseProcessor',
-        'django_quickbooks.processors.InvoiceQueryResponseProcessor',
-        'django_quickbooks.processors.InvoiceAddResponseProcessor',
-        'django_quickbooks.processors.InvoiceModResponseProcessor',
-        'django_quickbooks.processors.ItemServiceQueryResponseProcessor',
-        'django_quickbooks.processors.ItemInventoryQueryResponseProcessor',
-        'django_quickbooks.processors.ItemInventoryAddResponseProcessor',
-        'django_quickbooks.processors.VoucherQueryResponseProcessor',
-        'django_quickbooks.processors.VoucherAddResponseProcessor',
-        'django_quickbooks.processors.VendorPOSQueryResponseProcessor',
-        'django_quickbooks.processors.VendorPOSAddResponseProcessor',
-    ),
+    'RESPONSE_PROCESSORS': {
+        'QBFS': (
+            'django_quickbooks.processors.CustomerQueryResponseProcessor',
+            'django_quickbooks.processors.CustomerModResponseProcessor',
+            'django_quickbooks.processors.CustomerAddResponseProcessor',
+            'django_quickbooks.processors.InvoiceQueryResponseProcessor',
+            'django_quickbooks.processors.InvoiceAddResponseProcessor',
+            'django_quickbooks.processors.InvoiceModResponseProcessor',
+            'django_quickbooks.processors.ItemServiceQueryResponseProcessor',
+        ),
+        'QBPOS': (
+            'django_quickbooks.processors.ItemInventoryQueryResponseProcessor',
+            'django_quickbooks.processors.ItemInventoryAddResponseProcessor',
+            'django_quickbooks.processors.VoucherQueryResponseProcessor',
+            'django_quickbooks.processors.VoucherAddResponseProcessor',
+            'django_quickbooks.processors.VendorPOSQueryResponseProcessor',
+            'django_quickbooks.processors.VendorPOSAddResponseProcessor',
+            'django_quickbooks.processors.CustomerPOSQueryResponseProcessor',
+            'django_quickbooks.processors.CustomerPOSModResponseProcessor',
+            'django_quickbooks.processors.CustomerPOSAddResponseProcessor',
+        )
+    },
 
     'RABBITMQ_DEFAULT_HOST': 'localhost',
     'RABBITMQ_DEFAULT_USER': 'quickbooks',
@@ -47,10 +54,10 @@ DEFAULTS = {
 
     'LOCAL_MODEL_CLASSES': {
         'Invoice': '',
-        'Customer': 'Inventory.models.Customer',
-        'ItemInventory': 'Inventory.models.Level7',
-        'Voucher': 'Inventory.models.OrderVoucher',
-        'VendorPOS': 'Inventory.models.QBVendor',
+        'Customer': '',
+        'ItemInventory': '',
+        'Voucher': '',
+        'VendorPOS': '',
     }
 }
 

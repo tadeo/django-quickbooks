@@ -67,13 +67,13 @@ class QBXML_RESPONSE_STATUS_CODES:
     NAME_IS_NOT_UNIQUE = '3100'
 
 
-def get_processors():
+def get_processors(qb_type):
     processors = []
-    for processor_class in qbwc_settings.RESPONSE_PROCESSORS:
+    for processor_class in qbwc_settings.RESPONSE_PROCESSORS[qb_type]:
         processors.append(processor_class)
     if not processors:
         raise ImproperlyConfigured(
-            'No processors have been defined. Does '
+            f'No processors have been defined for {qb_type} qb_type. Does '
             'RESPONSE_PROCESSORS for Quickbooks contain anything?'
         )
     return processors

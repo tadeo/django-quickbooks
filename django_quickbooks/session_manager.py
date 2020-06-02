@@ -51,7 +51,7 @@ class SessionManager(BaseSessionManager, RabbitMQManager):
     def process_response(self, ticket, response, hresult, message):
         from django_quickbooks import get_processors
         realm = _get_realm(ticket)
-        processors = get_processors()
+        processors = get_processors(realm.qb_type)
         for processor in processors:
             try:
                 processed = processor(response, hresult, message, realm).process(realm)
