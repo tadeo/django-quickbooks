@@ -27,6 +27,7 @@ class Customer(BaseObject):
         CustomerDiscPercent=dict(validator=dict(type=SchemeValidator.FLOATTYPE)),
         IsUsingWithQB=dict(validator=dict(type=SchemeValidator.BOOLTYPE)),
         StoreExchangeStatus=dict(validator=dict(type=SchemeValidator.STRTYPE)),  # read-only
+        IsUsingChargeAccount=dict(validator=dict(type=SchemeValidator.BOOLTYPE)),
     )
 
     @staticmethod
