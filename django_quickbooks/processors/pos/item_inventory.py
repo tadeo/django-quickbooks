@@ -18,16 +18,17 @@ class ItemInventoryQueryResponseProcessor(ResponseProcessor, ResponseProcessorMi
         cont = super().process(realm)
         if not cont:
             return False
-        for item_inventory_ret in list(self._response_body):
-            item_inventory = self.obj_class.from_lxml(item_inventory_ret)
-            local_item_inventory = None
-            if item_inventory.ListID:
-                local_item_inventory = self.find_by_list_id(item_inventory.ListID)
-            elif not local_item_inventory and item_inventory.Name:
-                local_item_inventory = self.find_by_name(item_inventory.Name)
+        for item_ret in list(self._response_body):
+            item = self.obj_class.from_lxml(item_ret)
+            if item.ALU:
+                local_item = self.find_by_name(item.ALU, field_name='id')
 
-            if local_item_inventory:
-                self.update(local_item_inventory, item_inventory)
+                if local_item:
+                    local_item.qbd_object_id = item.ListID
+                    local_item.qbd_object_updated_at = timezone.now()
+                    local_item.save()
+                    # self.update(local_item, item)
+                    qb_object_created.send(self.obj_class, instance=local_item, realm=realm)
             # else:
             #     self.create(item_inventory)
         return True
