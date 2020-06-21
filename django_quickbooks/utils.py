@@ -1,9 +1,12 @@
 import random
 import string
 from importlib import import_module
-
-from django.utils.six import string_types
 from django_quickbooks.settings import DEFAULTS
+try:
+    from django.utils.six import string_types
+except ModuleNotFoundError:
+    from six import string_types
+
 
 
 def import_callable(path_or_callable):
