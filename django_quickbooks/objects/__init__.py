@@ -52,3 +52,9 @@ from django_quickbooks.objects.vendor_pos import \
 
 from django_quickbooks.objects.address_pos import \
     Address as AddressPOS
+
+from django_quickbooks.objects.sales_receipt_pos import \
+    SalesReceipt, \
+    SalesReceiptItem, \
+    TenderAccount, TenderCash, TenderCreditCard, TenderDeposit, TenderGift, \
+    BillingInformation, ShippingInformation

@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!-- ========================================================================== -->
+<!-- SalesReceiptAddRq.xml                                                         -->
+<!--                                                                            -->
+<!-- INTUIT CONFIDENTIAL.                                                       -->
+<!-- Copyright (c) 2001-2009 Intuit Inc. All rights reserved.                   -->
+<!-- Use is subject to the terms specified at:                                  -->
+<!--          http://developer.intuit.com/legal/devsite_tos.html                -->
+<!--                                                                            -->
+<!--                                                                            -->
+<!-- ========================================================================== -->
+<!-- Summary: Sample illustrating the account query request.                    -->
+<!-- This XML file contains a single request to query accounts.                 -->
+<!--                                                                            -->
+<!-- Description:                                                               -->
+<!-- A sample qbposXML request for use with SDKTest samples so that you can see -->
+<!-- the response from QB POS and verify that the QB POS Request Processor is   -->
+<!-- behaving appropriately.   -->
+<!-- ========================================================================== -->
+<!-- Language: xml                                                            -->
+<!-- Structure: qbposXML                                                            -->
+<!-- QuickBooks: any                                                            -->
+<!-- Deployment: any                                                            -->
+<!-- ========================================================================== -->
+<?qbposxml version="1.1"?>
+<!-- WILL WORK IF SALES TAX IS TURNED OFF IN POS ... 
+     otherwise receipt might not balance -->
+<QBPOSXML>
+    <QBPOSXMLMsgsRq onError="stopOnError">
+        <ItemInventoryAddRq requestID="1">
+            <ItemInventoryAdd defMacro="ListID:Inv1">
+                <DepartmentListID>1000000001</DepartmentListID>
+                <Desc1>SDK Item Sales Receipt</Desc1>
+                <Price1>5.00</Price1>            <!-- opt -->
+                <Size>Size</Size>            <!-- opt, field max = 8 -->
+            </ItemInventoryAdd>
+        </ItemInventoryAddRq>
+        <SalesReceiptAddRq requestID="50">
+            <SalesReceiptAdd>
+                <Comments>Comments</Comments>        <!-- opt, field max = 300 -->
+                <PriceLevelNumber>1</PriceLevelNumber>  <!-- opt -->
+                <!-- SalesReceiptType may have one of the following values:
+                     Sales,Return,Deposit,Refund,Payout,Payin -->
+                <SalesReceiptType>Sales</SalesReceiptType> <!-- opt -->
+                <ShipDate>2005-04-13</ShipDate>           <!-- opt -->
+                <TxnDate>2005-04-13</TxnDate>        <!-- opt -->
+                <SalesReceiptItemAdd>    <!-- opt, may rep -->
+                    <ListID useMacro="ListID:Inv1"/>
+                    <Qty>5</Qty>        <!-- opt -->
+                </SalesReceiptItemAdd>
+                <TenderAccountAdd>         <!-- opt, may rep -->
+                    <TenderAmount>5.00</TenderAmount>
+                </TenderAccountAdd>
+                <TenderCashAdd>        <!-- opt, may rep -->
+                    <TenderAmount>5.00</TenderAmount>
+                </TenderCashAdd>
+                <TenderCreditCardAdd>        <!-- opt, may rep -->
+                    <CardName>Visa</CardName>
+                    <TenderAmount>5.00</TenderAmount>
+                </TenderCreditCardAdd>
+                <TenderDepositAdd>        <!-- opt, may rep -->
+                    <TenderAmount>5.00</TenderAmount>
+                </TenderDepositAdd>
+                <TenderGiftAdd>        <!-- opt, may rep -->
+                    <GiftCertificateNumber>GiftCertificateNumber</GiftCertificateNumber>
+                    <TenderAmount>5.00</TenderAmount>
+                </TenderGiftAdd>
+            </SalesReceiptAdd>
+        </SalesReceiptAddRq>
+    </QBPOSXMLMsgsRq>
+</QBPOSXML>
