@@ -12,10 +12,10 @@ class VoucherService(Service):
     qb_type = None
 
     def add(self, object):
-        return self._add(QUICKBOOKS_ENUMS.RESOURCE_VOUCHER, object)
+        return self._add(QUICKBOOKS_ENUMS.RESOURCE_VOUCHER_POS, object)
 
     def all(self):
-        return self._all(QUICKBOOKS_ENUMS.RESOURCE_VOUCHER)
+        return self._all(QUICKBOOKS_ENUMS.RESOURCE_VOUCHER_POS)
 
     def find_by_id(self, id):
-        return self._find_by_id(QUICKBOOKS_ENUMS.RESOURCE_VOUCHER, id)
+        return self._find_by_id(QUICKBOOKS_ENUMS.RESOURCE_VOUCHER_POS, id)

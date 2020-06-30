@@ -4,11 +4,11 @@ from django_quickbooks.processors.base import ResponseProcessor, ResponseProcess
 from django_quickbooks.signals import qb_object_created
 from django.utils import timezone
 
-LocalVoucher = qbwc_settings.LOCAL_MODEL_CLASSES['Voucher']
+LocalVoucher = qbwc_settings.LOCAL_MODEL_CLASSES['VoucherPOS']
 
 
 class VoucherQueryResponseProcessor(ResponseProcessor, ResponseProcessorMixin):
-    resource = QUICKBOOKS_ENUMS.RESOURCE_VOUCHER
+    resource = QUICKBOOKS_ENUMS.RESOURCE_VOUCHER_POS
     op_type = QUICKBOOKS_ENUMS.OPP_QR
     local_model_class = LocalVoucher
     obj_class = Voucher
@@ -34,7 +34,7 @@ class VoucherQueryResponseProcessor(ResponseProcessor, ResponseProcessorMixin):
 
 
 class VoucherAddResponseProcessor(ResponseProcessor, ResponseProcessorMixin):
-    resource = QUICKBOOKS_ENUMS.RESOURCE_VOUCHER
+    resource = QUICKBOOKS_ENUMS.RESOURCE_VOUCHER_POS
     op_type = QUICKBOOKS_ENUMS.OPP_ADD
     local_model_class = LocalVoucher
     obj_class = Voucher

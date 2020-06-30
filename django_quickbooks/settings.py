@@ -33,9 +33,12 @@ DEFAULTS = {
         'django_quickbooks.processors.VoucherAddResponseProcessor',
         'django_quickbooks.processors.VendorQueryResponseProcessor',
         'django_quickbooks.processors.VendorAddResponseProcessor',
-        'django_quickbooks.processors.CustomerQueryResponseProcessor',
-        'django_quickbooks.processors.CustomerModResponseProcessor',
-        'django_quickbooks.processors.CustomerAddResponseProcessor',
+        'django_quickbooks.processors.CustomerQueryResponseProcessorPOS',
+        'django_quickbooks.processors.CustomerModResponseProcessorPOS',
+        'django_quickbooks.processors.CustomerAddResponseProcessorPOS',
+        'django_quickbooks.processors.SalesReceiptQueryResponseProcessor',
+        'django_quickbooks.processors.SalesReceiptAddResponseProcessor',
+
     ),
 
     'RABBITMQ_DEFAULT_HOST': 'localhost',
@@ -54,9 +57,11 @@ DEFAULTS = {
     'LOCAL_MODEL_CLASSES': {
         'Invoice': '',
         'Customer': '',
-        'ItemInventory': '',
-        'Voucher': '',
+        'CustomerPOS': '',
+        'ItemInventoryPOS': '',
+        'VoucherPOS': '',
         'VendorPOS': '',
+        'SalesReceiptPOS': '',
     }
 }
 

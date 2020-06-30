@@ -48,10 +48,12 @@ class QUICKBOOKS_ENUMS:
     RESOURCE_TXN = 'Txn'
     RESOURCE_ITEM_INVENTORY_POS = 'ItemInventory'
     RESOURCE_DEPARTMENT = 'Department'
+    # POS resources
     RESOURCE_PURCHASE_ORDER = 'PurchaseOrder'
-    RESOURCE_VOUCHER = 'Voucher'
+    RESOURCE_VOUCHER_POS = 'Voucher'
     RESOURCE_VENDOR_POS = 'Vendor'
     RESOURCE_CUSTOMER_POS = 'Customer'
+    RESOURCE_SALES_RECEIPT_POS = 'SalesReceipt'
 
 
 class QBXML_RESPONSE_STATUS_CODES:

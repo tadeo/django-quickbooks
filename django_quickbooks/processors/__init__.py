@@ -27,6 +27,10 @@ from django_quickbooks.processors.pos.vendor import \
     VendorAddResponseProcessor
 
 from django_quickbooks.processors.pos.customer import \
-    CustomerQueryResponseProcessor, \
-    CustomerAddResponseProcessor, \
-    CustomerModResponseProcessor
+    CustomerQueryResponseProcessor as CustomerQueryResponseProcessorPOS, \
+    CustomerAddResponseProcessor as CustomerAddResponseProcessorPOS, \
+    CustomerModResponseProcessor as CustomerModResponseProcessorPOS
+
+from django_quickbooks.processors.pos.sales_receipt import \
+    SalesReceiptQueryResponseProcessor, \
+    SalesReceiptAddResponseProcessor

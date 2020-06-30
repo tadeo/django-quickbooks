@@ -4,7 +4,7 @@ from django_quickbooks.processors.base import ResponseProcessor, ResponseProcess
 from django_quickbooks.signals import qb_object_created, qb_object_queried
 from django.utils import timezone
 
-LocalItemInventory = qbwc_settings.LOCAL_MODEL_CLASSES['ItemInventory']
+LocalItemInventory = qbwc_settings.LOCAL_MODEL_CLASSES['ItemInventoryPOS']
 
 
 class ItemInventoryQueryResponseProcessor(ResponseProcessor, ResponseProcessorMixin):

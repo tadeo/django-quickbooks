@@ -3,7 +3,7 @@ from django_quickbooks.objects.customer_pos import Customer
 from django_quickbooks.processors.base import ResponseProcessor, ResponseProcessorMixin
 from django_quickbooks.signals import qb_object_created, qb_object_queried, qb_object_updated
 
-LocalCustomer = qbwc_settings.LOCAL_MODEL_CLASSES['Customer']
+LocalCustomer = qbwc_settings.LOCAL_MODEL_CLASSES['CustomerPOS']
 
 
 class CustomerQueryResponseProcessor(ResponseProcessor, ResponseProcessorMixin):
