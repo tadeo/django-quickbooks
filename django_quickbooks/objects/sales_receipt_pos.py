@@ -79,6 +79,7 @@ class SalesReceipt(BaseObject):
         Subtotal=dict(validator=dict(type=SchemeValidator.STRTYPE)),
         Total=dict(validator=dict(type=SchemeValidator.FLOATTYPE)),
         TaxAmount=dict(validator=dict(type=SchemeValidator.FLOATTYPE)),
+        # TaxCategory may have one of the following values: Exempt
         TaxCategory=dict(validator=dict(type=SchemeValidator.STRTYPE)),
         TaxPercentage=dict(validator=dict(type=SchemeValidator.FLOATTYPE)),
         TenderType=dict(validator=dict(type=SchemeValidator.STRTYPE)),
