@@ -12,7 +12,6 @@ class VoucherItem(BaseObject):
 
 class Voucher(BaseObject):
     fields = dict(
-        ListID=dict(validator=dict(type=SchemeValidator.IDTYPE)),
         Associate=dict(validator=dict(type=SchemeValidator.STRTYPE, max_length=40)),
         Comments=dict(validator=dict(type=SchemeValidator.STRTYPE, max_length=300)),
         TxnID=dict(validator=dict(type=SchemeValidator.IDTYPE)),
@@ -37,7 +36,7 @@ class Voucher(BaseObject):
         VoucherItem=dict(many=True, validator=dict(type=SchemeValidator.OBJTYPE)),
         PurchaseOrderTxnID=dict(validator=dict(type=SchemeValidator.IDTYPE)),
         InvoiceDate=dict(validator=dict(type=SchemeValidator.STRTYPE)),
-        InvoiceNumber=dict(validator=dict(type=SchemeValidator.INTTYPE)),
+        InvoiceNumber=dict(validator=dict(type=SchemeValidator.STRTYPE)),
     )
 
     def __init__(self, **kwargs):
