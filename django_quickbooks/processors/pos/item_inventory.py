@@ -2,7 +2,6 @@ from django_quickbooks import QUICKBOOKS_ENUMS, qbwc_settings
 from django_quickbooks.objects.item_inventory_pos import ItemInventory
 from django_quickbooks.processors.base import ResponseProcessor, ResponseProcessorMixin
 from django_quickbooks.signals import qb_object_created, qb_object_queried
-from django.utils import timezone
 
 LocalItemInventory = qbwc_settings.LOCAL_MODEL_CLASSES['ItemInventoryPOS']
 
