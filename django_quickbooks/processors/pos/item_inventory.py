@@ -14,23 +14,13 @@ class ItemInventoryQueryResponseProcessor(ResponseProcessor, ResponseProcessorMi
     obj_class = ItemInventory
 
     def process(self, realm):
-        # fixme should handle duplicate response in someway
         cont = super().process(realm)
         if not cont:
             return False
         for item_ret in list(self._response_body):
             item = self.obj_class.from_lxml(item_ret)
-            if item.ALU:
-                local_item = self.find_by_name(item.ALU, field_name='id')
+            qb_object_queried.send(self.obj_class, instance=item, realm=realm)
 
-                if local_item:
-                    local_item.qbd_object_id = item.ListID
-                    local_item.qbd_object_updated_at = timezone.now()
-                    local_item.save()
-                    # self.update(local_item, item)
-                    qb_object_queried.send(self.obj_class, instance=local_item, realm=realm)
-            # else:
-            #     self.create(item_inventory)
         return True
 
 
@@ -41,19 +31,11 @@ class ItemInventoryAddResponseProcessor(ResponseProcessor, ResponseProcessorMixi
     obj_class = ItemInventory
 
     def process(self, realm):
-        # fixme should handle duplicate error response in someway
         cont = super().process(realm)
         if not cont:
             return False
         for item_ret in list(self._response_body):
             item = self.obj_class.from_lxml(item_ret)
-            if item.ALU:
-                local_item = self.find_by_name(item.ALU, field_name='id')
+            qb_object_created.send(self.obj_class, instance=item, realm=realm)
 
-                if local_item:
-                    local_item.qbd_object_id = item.ListID
-                    local_item.qbd_object_updated_at = timezone.now()
-                    local_item.save()
-                    # self.update(local_item, item)
-                    qb_object_created.send(self.obj_class, instance=local_item, realm=realm)
         return True
