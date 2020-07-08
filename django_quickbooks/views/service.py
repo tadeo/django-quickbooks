@@ -108,7 +108,7 @@ class QuickBooksService(ServiceBase):
         return QBWC_CODES.UNEXP_ERR
 
     @rpc(Unicode, _returns=Unicode)
-    def getServerVersion(ctx, ticket):
+    def serverVersion(ctx, ticket):
         """
         Provide a way for web-service to notify web connector of it’s version and other details about version
 
