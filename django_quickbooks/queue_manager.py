@@ -41,7 +41,7 @@ class RabbitMQManager(QueueManager):
                 ),
                 heartbeat=600,
                 blocked_connection_timeout=300,
-                connection_attempts=10000,
+                connection_attempts=1000,
             )
         )
 
@@ -63,7 +63,7 @@ class RabbitMQManager(QueueManager):
         channel = self._get_channel(receive=False)
         if delete_queue:
             channel.queue_delete(queue_name)
-        channel.queue_declare(queue_name, arguments={'x-queue-mode': 'lazy', 'x-max-length': 10000})
+        channel.queue_declare(queue_name, arguments={'x-queue-mode': 'lazy', 'x-max-length': 1000})
         channel.basic_publish(exchange='', routing_key=queue_name, body=msg, properties=pika.BasicProperties(
             delivery_mode=2  # persistent
         ))
@@ -71,7 +71,7 @@ class RabbitMQManager(QueueManager):
     def get_queue_message_count(self, queue_name):
         return self._get_channel().queue_declare(
             queue=queue_name,
-            arguments={'x-queue-mode': 'lazy', 'x-max-length': 10000}
+            arguments={'x-queue-mode': 'lazy', 'x-max-length': 1000}
         ).method.message_count
 
     def delete_queue(self, queue_name):
