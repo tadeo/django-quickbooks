@@ -110,7 +110,7 @@ class QuickBooksService(ServiceBase):
     @rpc(Unicode, _returns=Unicode)
     def serverVersion(ctx, ticket):
         """for compatibility, some QBWC send serverVersion and some send getServerVersion """
-        return ctx.getServerVersion(ticket)
+        return HIGHEST_SUPPORTING_QBWC_VERSION
 
     @rpc(Unicode, _returns=Unicode)
     def getServerVersion(ctx, ticket):
