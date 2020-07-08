@@ -33,7 +33,7 @@ class SessionManager(BaseSessionManager, RabbitMQManager):
     @method_decorator(realm_connection())
     def add_new_jobs(self, realm=None):
         queryset = QBDTask.objects.filter(realm=realm).order_by('created_at')
-        for qb_task in queryset:
+        for qb_task in queryset[:1000]:  # limit to 1000 because queue manager's max_length is 1000
             # try:
                 self.publish_message(qb_task.get_request(), str(realm.id))
             # except QbException as exc:
