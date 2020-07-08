@@ -109,6 +109,11 @@ class QuickBooksService(ServiceBase):
 
     @rpc(Unicode, _returns=Unicode)
     def serverVersion(ctx, ticket):
+        """for compatibility, some QBWC send serverVersion and some send getServerVersion """
+        return ctx.getServerVersion(ticket)
+
+    @rpc(Unicode, _returns=Unicode)
+    def getServerVersion(ctx, ticket):
         """
         Provide a way for web-service to notify web connector of it’s version and other details about version
 
