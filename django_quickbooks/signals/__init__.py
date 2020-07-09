@@ -23,4 +23,3 @@ qbd_first_time_connected = Signal(providing_args=["realm_id"])
 from django_quickbooks.signals.customer import *
 from django_quickbooks.signals.invoice import *
 from django_quickbooks.signals.qbd_task import *
-from django_quickbooks.signals.pos.item_inventory import *
