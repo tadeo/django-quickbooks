@@ -9,12 +9,13 @@ DEFAULTS = {
     'MINIMUM_RUN_EVERY_NMINUTES': 15,
 
     'SESSION_MANAGER_CLASS': 'django_quickbooks.session_manager.SessionManager',
+    'QUEUE_MANAGER_CLASS': 'django_quickbooks.queue_manager.RabbitMQManager',
 
     'REALM_MODEL_CLASS': 'django_quickbooks.models.Realm',
     'REALM_SESSION_MODEL_CLASS': 'django_quickbooks.models.RealmSession',
     'QBD_TASK_MODEL_CLASS': 'django_quickbooks.models.QBDTask',
-
-    'REALM_CONNECTION_DECORATOR': 'django_quickbooks.decorators.base_realm_tenant_connection',
+    
+    'REALM_CONNECTION_DECORATOR': 'django_quickbooks.decorators.base_realm_connection',
 
     'RESPONSE_PROCESSORS': (
         'django_quickbooks.processors.CustomerQueryResponseProcessor',
@@ -46,12 +47,17 @@ DEFAULTS = {
     'RABBITMQ_DEFAULT_PASS': 'quickbooks',
     'RABBITMQ_DEFAULT_VHOST': 'quickbooks',
 
+    'REDIS_DEFAULT_HOST': 'localhost',
+    'REDIS_DEFAULT_PORT': 6379,
+    'REDIS_DEFAULT_DB': 0,
+    'REDIS_DEFAULT_PASSWORD': None,
+
     'APP_URL': 'http://localhost:8000/quickbooks-desktop/',
     'APP_SUPPORT': 'http://localhost:8000/quickbooks-desktop/support/',
     'APP_ID': '',
     'APP_NAME': 'Some App',
     'APP_DESCRIPTION': 'Some App Description',
-    # 'QB_TYPE': 'QBPOS',
+    # 'QB_TYPE': 'QBFS',
     'OWNER_ID': '{1ee58da6-3051-11ea-b499-9cda3ea7afc1}',
 
     'LOCAL_MODEL_CLASSES': {
@@ -69,6 +75,7 @@ IMPORT_STRINGS = (
     'RESPONSE_PROCESSORS',
     'POS_RESPONSE_PROCESSORS',
     'SESSION_MANAGER_CLASS',
+    'QUEUE_MANAGER_CLASS',
     'REALM_MODEL_CLASS',
     'REALM_SESSION_MODEL_CLASS',
     'QBD_TASK_MODEL_CLASS',

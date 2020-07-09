@@ -6,7 +6,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
-from django.utils.timezone import now
+from django.utils import timezone
 from lxml import etree
 
 from django_quickbooks import qbwc_settings, QUICKBOOKS_ENUMS
@@ -52,6 +52,10 @@ class RealmSessionMixin(models.Model):
 
     objects = RealmSessionQuerySet.as_manager()
 
+    def close(self):
+        self.ended_at = timezone.now()
+        self.save()
+
     class Meta:
         abstract = True
 
@@ -63,7 +67,7 @@ class QBDTaskMixin(models.Model):
     object_id = models.CharField(max_length=50, null=True)
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE, null=True)
     content_object = GenericForeignKey()
-    created_at = models.DateTimeField(default=now)
+    created_at = models.DateTimeField(auto_now_add=True)
     data = models.TextField(null=True, blank=True)
 
     class Meta:
@@ -107,6 +111,7 @@ class QBDTaskMixin(models.Model):
 
 
 class Realm(RealmMixin):
+    schema_name = models.CharField(max_length=100, unique=True)
     is_active = models.BooleanField(default=True)
     qbpos_computer_name = models.CharField(max_length=100, blank=True, null=True)
     qbpos_company_data = models.CharField(max_length=100, blank=True, null=True)

@@ -4,7 +4,8 @@ from spyne.model.primitive import Integer, String
 from spyne.service import ServiceBase
 
 from django_quickbooks import QBWC_CODES, HIGHEST_SUPPORTING_QBWC_VERSION, \
-    get_session_manager
+    get_session_manager_class, get_queue_manager_class
+from django_quickbooks.signals import realm_authenticated
 
 
 class QuickBooksService(ServiceBase):
@@ -23,10 +24,11 @@ class QuickBooksService(ServiceBase):
         return_array = []
         realm = session_manager.authenticate(username=strUserName, password=strPassword)
         if realm and realm.is_active:
+            realm_authenticated.send(sender=realm.__class__, realm=realm)
             if not session_manager.in_session(realm):
-                session_manager.add_new_jobs(realm)
-                if session_manager.new_jobs(realm):
-                    ticket = session_manager.set_ticket(realm)
+                session_manager.add_new_requests(realm)
+                if session_manager.new_requests_count(realm) > 0:
+                    ticket = session_manager.create_session(realm)
                     return_array.append(ticket)
                     if realm.qb_type == 'QBPOS' and realm.qbpos_computer_name and realm.qbpos_company_data:
                         return_array.append(realm.qbpos_connection_string)
@@ -72,7 +74,8 @@ class QuickBooksService(ServiceBase):
         @return string telling the web connector what to do next.
         """
         print('closeConnection(): ticket=%s' % ticket)
-        session_manager.clear_ticket(ticket)
+        realm = session_manager.get_realm(ticket)
+        session_manager.close_session(realm)
         return QBWC_CODES.CONN_CLS_OK
 
     @rpc(Unicode, Unicode, Unicode, _returns=Unicode)
@@ -89,7 +92,8 @@ class QuickBooksService(ServiceBase):
         retrying _set_connection.
         """
         print('connectionError(): ticket=%s, hresult=%s, message=%s' % (ticket, hresult, message))
-        session_manager.clear_ticket(ticket)
+        realm = session_manager.get_realm(ticket)
+        session_manager.close_session(realm)
         return QBWC_CODES.CONN_CLS_ERR
 
     @rpc(Unicode, _returns=Unicode)
@@ -188,7 +192,11 @@ class QuickBooksService(ServiceBase):
         print('strCompanyFileName', strCompanyFileName)
         print('qbXMLCountry', qbXMLCountry)
 
-        return session_manager.get_request(ticket)
+        realm = session_manager.get_realm(ticket)
+        request = session_manager.get_request(realm)
+        session_manager.check_iterating_request(request, ticket)
+
+        return request
 
     @rpc(Unicode, Unicode, _returns=Unicode)
     def interactiveUrl(ctx, ticket, sessionID):
@@ -198,4 +206,5 @@ class QuickBooksService(ServiceBase):
         return ''
 
 
-session_manager = get_session_manager()
+QueueManager = get_queue_manager_class()
+session_manager = get_session_manager_class()(queue_manager=QueueManager())
