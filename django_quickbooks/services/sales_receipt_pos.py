@@ -21,7 +21,7 @@ class SalesReceiptPOSService(Service):
         return self._update(QUICKBOOKS_ENUMS.RESOURCE_SALES_RECEIPT_POS, object)
 
     def all(self):
-        self._all(QUICKBOOKS_ENUMS.RESOURCE_SALES_RECEIPT_POS)
+        return self._all(QUICKBOOKS_ENUMS.RESOURCE_SALES_RECEIPT_POS)
 
     def find_by_id(self, id):
         return self._find_by_id(QUICKBOOKS_ENUMS.RESOURCE_SALES_RECEIPT_POS, id)
