@@ -8,13 +8,15 @@ DEFAULTS = {
     'MINIMUM_RUN_EVERY_NSECONDS': 30,
     'MINIMUM_RUN_EVERY_NMINUTES': 15,
 
+    'TASKS_PER_REQUEST_LIMIT': 500,
+
     'SESSION_MANAGER_CLASS': 'django_quickbooks.session_manager.SessionManager',
     'QUEUE_MANAGER_CLASS': 'django_quickbooks.queue_manager.RabbitMQManager',
 
     'REALM_MODEL_CLASS': 'django_quickbooks.models.Realm',
     'REALM_SESSION_MODEL_CLASS': 'django_quickbooks.models.RealmSession',
     'QBD_TASK_MODEL_CLASS': 'django_quickbooks.models.QBDTask',
-    
+
     'REALM_CONNECTION_DECORATOR': 'django_quickbooks.decorators.base_realm_connection',
 
     'RESPONSE_PROCESSORS': (

@@ -11,6 +11,8 @@ from django_quickbooks.core.session_manager import BaseSessionManager
 from django_quickbooks.decorators import realm_connection
 from django_quickbooks.exceptions import QBXMLParseError, QBXMLStatusError, QbException
 
+from django_quickbooks.settings import qbwc_settings
+
 Realm = get_realm_model()
 RealmSession = get_realm_session_model()
 QBDTask = get_qbd_task_model()
@@ -42,7 +44,8 @@ class SessionManager(BaseSessionManager):
 
     @method_decorator(realm_connection())
     def add_new_requests(self, realm=None):
-        queryset = QBDTask.objects.filter(realm=realm).order_by('created_at')
+        queryset = QBDTask.objects.filter(realm=realm).order_by('created_at')[:qbwc_settings.TASKS_PER_REQUEST_LIMIT]
+        ids = list(queryset.values_list('id', flat=True))
         for qb_task in queryset:
             try:
                 request = qb_task.get_request()
@@ -52,7 +55,7 @@ class SessionManager(BaseSessionManager):
             except ObjectDoesNotExist as e:
                 logger.error(e)
 
-        queryset.delete()
+        QBDTask.objects.filter(id__in=ids).delete()
 
     def new_requests_count(self, realm):
         queue_name = '%s:%s' % (self.request_queue_prefix, realm.id)
