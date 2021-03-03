@@ -8,7 +8,7 @@ DEFAULTS = {
     'MINIMUM_RUN_EVERY_NSECONDS': 30,
     'MINIMUM_RUN_EVERY_NMINUTES': 15,
 
-    'TASKS_PER_REQUEST_LIMIT': 500,
+    'TASKS_PER_REQUEST_LIMIT': 200,
 
     'SESSION_MANAGER_CLASS': 'django_quickbooks.session_manager.SessionManager',
     'QUEUE_MANAGER_CLASS': 'django_quickbooks.queue_manager.RabbitMQManager',
