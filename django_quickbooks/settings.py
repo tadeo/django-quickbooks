@@ -11,7 +11,7 @@ DEFAULTS = {
     'TASKS_PER_REQUEST_LIMIT': 200,
 
     'SESSION_MANAGER_CLASS': 'django_quickbooks.session_manager.SessionManager',
-    'QUEUE_MANAGER_CLASS': 'django_quickbooks.queue_manager.RabbitMQManager',
+    'QUEUE_MANAGER_CLASS': 'django_quickbooks.queue_manager.RedisManager',
 
     'REALM_MODEL_CLASS': 'django_quickbooks.models.Realm',
     'REALM_SESSION_MODEL_CLASS': 'django_quickbooks.models.RealmSession',
