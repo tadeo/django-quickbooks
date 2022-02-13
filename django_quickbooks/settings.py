@@ -49,7 +49,7 @@ DEFAULTS = {
     'RABBITMQ_DEFAULT_PASS': 'quickbooks',
     'RABBITMQ_DEFAULT_VHOST': 'quickbooks',
 
-    'REDIS_DEFAULT_HOST': 'localhost',
+    'REDIS_DEFAULT_HOST': 'result',
     'REDIS_DEFAULT_PORT': 6379,
     'REDIS_DEFAULT_DB': 0,
     'REDIS_DEFAULT_PASSWORD': None,
