@@ -67,6 +67,11 @@ class SessionManager(BaseSessionManager):
         processors = get_processors(realm.qb_type)
         for processor in processors:
             try:
+                print("Trying...")
+                print(processor)
+                print(processor.resource)
+                print(processor.op_type)
+                print(processor.local_model_class)
                 processed = processor(response, hresult, message, realm).process(realm)
                 if processed:
                     break
