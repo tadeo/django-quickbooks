@@ -13,17 +13,26 @@ class CustomerQueryResponseProcessor(ResponseProcessor, ResponseProcessorMixin):
 
     def process(self, realm):
         cont = super().process(realm)
+        print('-'*80)
+        print(cont)
+        print(realm)
         if not cont:
             return False
         for customer_ret in list(self._response_body):
+            print('-'*20)
+            print(customer_ret)
             customer = self.obj_class.from_lxml(customer_ret)
+            print(customer.__dict__)
             local_customer = None
             if customer.ListID:
                 local_customer = self.find_by_list_id(customer.ListID)
             if not local_customer and customer.Name:
                 local_customer = self.find_by_name(customer.Name)
 
+            print(local_customer)
+
             if local_customer:
+                print(local_customer.__dict__)
                 self.update(local_customer, customer)
             else:
                 self.create(customer)
