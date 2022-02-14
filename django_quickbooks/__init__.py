@@ -74,13 +74,21 @@ def get_queue_manager_class():
 
 
 def get_processors(qb_type='QBFS'):
+    print("get_processors")
     processors = []
+    print(qb_type)
     if qb_type == 'QBPOS':
         response_processors = qbwc_settings.POS_RESPONSE_PROCESSORS
     else:
         response_processors = qbwc_settings.RESPONSE_PROCESSORS
+
+    print(response_processors)
+
     for processor_class in response_processors:
         processors.append(processor_class)
+
+    print(processors)
+
     if not processors:
         raise ImproperlyConfigured(
             f'No processors have been defined for {qb_type} qb_type. Does '

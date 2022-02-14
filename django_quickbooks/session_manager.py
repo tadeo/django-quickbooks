@@ -64,6 +64,8 @@ class SessionManager(BaseSessionManager):
     def process_response(self, ticket, response, hresult, message):
         from django_quickbooks import get_processors
         realm = self.get_realm(ticket)
+        print("process_respons")
+        print(realm.__dict__)
         processors = get_processors(realm.qb_type)
         for processor in processors:
             try:
